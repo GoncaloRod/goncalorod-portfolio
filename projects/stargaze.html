@@ -137,6 +137,11 @@
             Sadly, I was not able implement mouse for navigating the terminal UI so the player is forced 
             to use the arrow keys for that.
           </p>
+
+          <p>
+            This concept could also be applied in a non interactable object, like a car dashboard that 
+            displays the car's speed and RPMs for example.
+          </p>
         </div>
 
         <div class="col-12 col-md-5">
@@ -152,7 +157,34 @@
       <div class="row">
 
         <div class="col-12 col-md-7">
+          <p>
+            This puzzle consists of one player having access to the mining drone scanner, where he is able to
+            see where the minable resources are around the ship, and the other player is able to move the drone
+            around and gather the resources. The resources are necessary for the next puzzle to fabricate the fuel
+            for the ship. The player with the drone scanner needs to tell the player with the controls where to 
+            move the drone so they can gather all the resources needed.
+          </p>
 
+          <p>
+            The resources are placed in a random position to prevent the players from memorizing the placement
+            from the previous gameplays.
+          </p>
+
+          <p>
+            To implement this I stored all the data in a centralized object in the server for easier syncing around 
+            better security.
+          </p>
+
+          <p>
+            The scanning station, then reads the data in that object and displays in on screen, but only when 
+            there's a change like a resource that was gathered or the drone position changed.
+          </p>
+
+          <p>
+            Meanwhile the drone control station just sends a command to the server whenever the player wants 
+            to move the drone or gather a resource. All the logic behind that  is handled by the server, again 
+            for security reasons.
+          </p>
         </div>
 
         <div class="col-12 col-md-5">
@@ -165,7 +197,7 @@
       <!-- Gameplay -->
       <h3 class="mt-4">Gameplay</h3>
       
-      <div class="row pb-5">
+      <div class="row pb-3">
 
         <div class="ratio ratio-21x9 mt-4">
           <iframe src="https://www.youtube.com/embed/btNG39aYSl0" title="Stargaze Gameplay" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -173,6 +205,14 @@
 
       </div>
       <!-- Gameplay -->
+
+      <!-- Downloads -->
+      <h3 class="mt-4">Downloads</h3>
+
+      <div class="row pb-5">
+
+      </div>
+      <!-- Downloads -->
 
     </div><!-- .container -->
 
