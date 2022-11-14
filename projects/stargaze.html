@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <title>Gonçalo Rodrigues - Portfolio</title>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-dark bg-custom-gradient">
+      <div class="container">
+
+        <a href="../index.html" class="navbar-brand">Gonçalo Rodrigues</a>
+
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+
+      <h1>Stargaze</h1>
+
+      <span class="badge rounded-pill text-bg-dark"><i class="bi bi-people-fill"></i> Group Project</span>
+      <span class="badge rounded-pill text-bg-dark">Unity</span>
+      <span class="badge rounded-pill text-bg-dark">Mirror</span>
+      <span class="badge rounded-pill text-bg-dark">C#</span>
+
+      <div class="row mt-4">
+        <div class="col-12 col-md-7">
+
+          <p>
+            Stargaze is a multiplayer co-op puzzle game. One player will play as engineer and the other as navigator. 
+            You play as crew members of a ship that broke down and you are now stranded in space. 
+            You were unable to join the rest of the crew and escape so, in order to return home, 
+            you need to work together to repair the ship.
+          </p>
+
+          <p>
+            This game as developed by a group of 4 for the final project of my degree.
+          </p>
+
+          <p>
+            In this project I was responsible for all the <a href="#networking">networking</a> tasks and also some 
+            gameplay aspects like the <a href="#character-controller">character controller</a>, 
+            <a href="#interactable-terminals">interactable  terminals</a> and the 
+            <a href="#mining-drone-puzzle">mining drone puzzle</a>.
+          </p>
+
+        </div><!-- .col-12 .col-md-8 -->
+      </div><!-- .row -->
+
+      <!-- Networking -->
+      <h3 class="mt-4" id="networking">Networking</h3>
+      
+      <div class="row">
+
+        <div class="col-12 col-md-7">
+          <p>
+            For this game, we didn't want to deal with the costs of hosting and maintaining servers
+            so we opted for a Pear to Pear approach.
+          </p>
+          
+          <p>
+            For easier match making we used Steamworks to allow the players to create lobbies and invite
+            their friends to play using Steam. Players also have an option to create public lobbies and
+            allow random players to join them if they wish.
+          </p>
+
+          <p>
+            Since I would be the one responsible for implementing all the multiplayer features in the 
+            game I chose <a href="https://github.com/vis2k/Mirror" target="_blank">Mirror</a> as networking 
+            library, because I was already familiar with it from previous projects, and chose 
+            <a href="https://github.com/Facepunch/Facepunch.Steamworks" target="_blank">Facepunch.Steamworks</a> 
+            to integrate Steamworks into our project.
+          </p>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <img class="img-fluid" src="../res/ProjectThumbnailPlaceholder.png">
+        </div>
+
+      </div>
+      <!-- Networking -->
+
+      <!-- Character Controller -->
+      <h3 class="mt-4" id="character-controller">Character Controller</h3>
+      
+      <div class="row">
+
+        <div class="col-12 col-md-7">
+          <p>
+            One of this game's puzzles required the gravity of the players to be turned off so I had to implement 
+            both a grounded and a zero-g character controller and a way to switch between them.
+          </p>
+
+          <p>
+            I accomplished this by implementing both independently of each other and enabling or disabling them
+            according to the gravity state.
+          </p>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <img class="img-fluid" src="../res/ProjectThumbnailPlaceholder.png">
+        </div>
+
+      </div>
+      <!-- Character Controller -->
+
+      <!-- Interactable Terminals -->
+      <h3 class="mt-4" id="interactable-terminals">Interactable Terminals</h3>
+
+      <div class="row">
+
+        <div class="col-12 col-md-7">
+          <p>
+            This was a suggestion of mine to the Game Designers, because I see this type of terminals in
+            games like Elite Dangerous and Star Citizen, and since I was the one that suggested it
+            I would also be the one responsible for their implementation.
+          </p>
+
+          <p>
+            I was able to do this by rendering a canvas to a render target and using the render target
+            as a texture for the screen.
+          </p>
+
+          <p>
+            Sadly, I was not able implement mouse for navigating the terminal UI so the player is forced 
+            to use the arrow keys for that.
+          </p>
+        </div>
+
+        <div class="col-12 col-md-5">
+          <img class="img-fluid" src="../res/ProjectThumbnailPlaceholder.png">
+        </div>
+
+      </div>
+      <!-- Interactable Terminals -->
+
+      <!-- Mining Drone Puzzle -->
+      <h3 class="mt-4" id="mining-drone-puzzle">Mining Drone Puzzle</h3>
+
+      <div class="row">
+
+        <div class="col-12 col-md-7">
+
+        </div>
+
+        <div class="col-12 col-md-5">
+          <img class="img-fluid" src="../res/ProjectThumbnailPlaceholder.png">
+        </div>
+
+      </div>
+      <!-- Mining Drone Puzzle -->
+
+      <!-- Gameplay -->
+      <h3 class="mt-4">Gameplay</h3>
+      
+      <div class="row pb-5">
+
+        <div class="ratio ratio-21x9 mt-4">
+          <iframe src="https://www.youtube.com/embed/btNG39aYSl0" title="Stargaze Gameplay" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+      </div>
+      <!-- Gameplay -->
+
+    </div><!-- .container -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>

@@ -1,0 +1,36 @@
+:root {
+  --custom-gradient: linear-gradient(45deg, rgb(36, 53, 151) 0%, rgb(29, 147, 216) 100%);
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('res/fonts/Inconsolata.ttf');
+}
+
+.bg-custom-gradient {
+
+  background: var(--custom-gradient);
+  
+}
+
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6 {
+  font-family: 'Inconsolata';
+}
+
+.btn {
+  --bs-btn-border-radius: 0;
+  --bs-btn-border-width: 2px;
+}
+
+.btn-lg {
+  --bs-btn-border-radius: 0;
+}
+
+.card {
+  --bs-card-border-radius: 0;
+  }
