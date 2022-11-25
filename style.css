@@ -33,4 +33,8 @@
 
 .card {
   --bs-card-border-radius: 0;
-  }
+}
+
+.carousel-caption {
+  padding-bottom: 0;
+}
