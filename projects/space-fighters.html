@@ -14,6 +14,9 @@
 
     <script src="https://kit.fontawesome.com/35e1fe45ab.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.1/viewer.min.css" integrity="sha512-XHhuZDcgyu28Fsd75blrhZKbqqWCXaUCOuy2McB4doeSDu34BgydakOK71TH/QEhr0nhiieBNhF8yWS8thOGUg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.1/viewer.min.js" integrity="sha512-UzpQxIWgLbHvbVd4+8fcRWqFLi1pQ6qO6yXm+Hiig76VhnhW/gvfvnacdPanleB2ak+VwiI5BUqrPovGDPsKWQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <title>Gonçalo Rodrigues - Portfolio</title>
 
   </head>
@@ -91,9 +94,7 @@
 
               <!-- Server List -->
               <div class="carousel-item active">
-                <a href="../res/projects/space-fighters/ServerList.png" target="_blank">
-                  <img src="../res/projects/space-fighters/ServerList.png" class="d-block w-100" alt="...">
-                </a>
+                <img id="img-server-list" src="../res/projects/space-fighters/ServerList.png" class="d-block w-100" alt="Server List">
                 
                 <div class="carousel-caption d-block">
                   <h5>Server List</h5>
@@ -102,9 +103,7 @@
 
               <!-- Direct Connect -->
               <div class="carousel-item">
-                <a href="../res/projects/space-fighters/DirectConnect.png" target="_blank">
-                  <img src="../res/projects/space-fighters/DirectConnect.png" class="d-block w-100" alt="...">
-                </a>
+                <img id="img-direct-connect" src="../res/projects/space-fighters/DirectConnect.png" class="d-block w-100" alt="Direct Connect">
 
                 <div class="carousel-caption d-block">
                   <h5>Direct Connect</h5>
@@ -145,9 +144,13 @@
         </div>
 
         <div class="col-12 col-md-5">
+          <!--
           <a href="../res/projects/space-fighters/Lobby.png" target="_blank">
-            <img class="img-fluid" src="../res/projects/space-fighters/Lobby.png">
+            <img class="img-fluid" src="../res/projects/space-fighters/Lobby.png" alt="Lobby">
           </a>
+          -->
+          <img class="img-fluid" id="img-lobby" src="../res/projects/space-fighters/Lobby.png" alt="Lobby">
+
         </div>
         
       </div>
@@ -193,6 +196,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+    <script type="module">
+
+      const options = {
+        navbar: false,
+        toolbar: false
+      }
+
+      const imgServerList = new Viewer(document.getElementById('img-server-list'), options);
+      const imgDirectConnect = new Viewer(document.getElementById('img-direct-connect'), options);
+      const imgLobby = new Viewer(document.getElementById('img-lobby'), options);
+
+    </script>
 
   </body>
 
