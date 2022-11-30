@@ -14,6 +14,9 @@
 
     <script src="https://kit.fontawesome.com/35e1fe45ab.js" crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.1/viewer.min.css" integrity="sha512-XHhuZDcgyu28Fsd75blrhZKbqqWCXaUCOuy2McB4doeSDu34BgydakOK71TH/QEhr0nhiieBNhF8yWS8thOGUg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.1/viewer.min.js" integrity="sha512-UzpQxIWgLbHvbVd4+8fcRWqFLi1pQ6qO6yXm+Hiig76VhnhW/gvfvnacdPanleB2ak+VwiI5BUqrPovGDPsKWQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <title>Gonçalo Rodrigues - Portfolio</title>
 
   </head>
@@ -88,7 +91,51 @@
         </div>
 
         <div class="col-12 col-md-5">
-          <img class="img-fluid" src="../res/ProjectThumbnailPlaceholder.png">
+
+          <div id="networking-screenshots" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-inner">
+
+              <!-- Lobby -->
+              <div class="carousel-item active">
+                <img id="img-lobby" src="../res/projects/stargaze/Lobby.png" class="d-block w-100" alt="Lobby">
+                
+                <div class="carousel-caption d-block">
+                  <h5>Lobby</h5>
+                </div>
+              </div>
+
+              <!-- Join Game -->
+              <div class="carousel-item">
+                <img id="img-join-game" src="../res/projects/stargaze/JoinGame.png" class="d-block w-100" alt="Join Game">
+                
+                <div class="carousel-caption d-block">
+                  <h5>Join Game</h5>
+                </div>
+              </div>
+
+              <!-- Host Game -->
+              <div class="carousel-item">
+                <img id="img-host-game" src="../res/projects/stargaze/HostGame.png" class="d-block w-100" alt="Host Game">
+                
+                <div class="carousel-caption d-block">
+                  <h5>Host Game</h5>
+                </div>
+              </div>
+              
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#networking-screenshots" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#networking-screenshots" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+
+          </div><!-- #matchmaking-screenshots -->
+
         </div>
 
       </div>
@@ -112,7 +159,7 @@
         </div>
 
         <div class="col-12 col-md-5">
-          <img class="img-fluid" src="../res/ProjectThumbnailPlaceholder.png">
+          <img class="img-fluid" id="img-character-controller" src="../res/projects/stargaze/CharacterController.gif">
         </div>
 
       </div>
@@ -147,7 +194,7 @@
         </div>
 
         <div class="col-12 col-md-5">
-          <img class="img-fluid" src="../res/ProjectThumbnailPlaceholder.png">
+          <img class="img-fluid" id="img-interactable-terminals" src="../res/projects/stargaze/InteractableTerminals.gif">
         </div>
 
       </div>
@@ -190,7 +237,42 @@
         </div>
 
         <div class="col-12 col-md-5">
-          <img class="img-fluid" src="../res/ProjectThumbnailPlaceholder.png">
+          
+          <div id="mining-drone-puzzle-screenshots" class="carousel slide" data-bs-ride="false">
+            <div class="carousel-inner">
+
+              <!-- Drone Hub -->
+              <div class="carousel-item active">
+                <img id="img-drone-hub" src="../res/projects/stargaze/DroneHub.gif" class="d-block w-100" alt="Drone Controls">
+                
+                <div class="carousel-caption d-block">
+                  <h5>Drone Controls</h5>
+                </div>
+              </div>
+
+              <!-- LiDAR Station -->
+              <div class="carousel-item">
+                <img id="img-lidar-station" src="../res/projects/stargaze/LiDARStation.gif" class="d-block w-100" alt="Drone Scanner">
+                
+                <div class="carousel-caption d-block">
+                  <h5>Drone Scanner</h5>
+                </div>
+              </div>
+              
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#mining-drone-puzzle-screenshots" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#mining-drone-puzzle-screenshots" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+
+          </div><!-- #mining-drone-puzzle-screenshots -->
+
         </div>
 
       </div>
@@ -226,7 +308,7 @@
         </p>
 
         <p>
-          <a class="btn btn-primary" href="https://cdn.goncalorod.pt/Stargaze.zip"><i class="bi bi-windows"></i> Windows</a>
+          <a class="btn btn-primary" href="https://cdn.goncalorod.pt/Stargaze-Windows.zip"><i class="bi bi-windows"></i> Windows</a>
         </p>
 
       </div>
@@ -236,6 +318,26 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+    <script type="module">
+
+      const options = {
+        navbar: false,
+        toolbar: false
+      }
+
+      const imgLobby = new Viewer(document.getElementById('img-lobby'), options);
+      const imgJoinGame = new Viewer(document.getElementById('img-join-game'), options);
+      const imgHostGame = new Viewer(document.getElementById('img-host-game'), options);
+      
+      const imgCharacterController = new Viewer(document.getElementById('img-character-controller'), options);
+
+      const imgInteractableTerminals = new Viewer(document.getElementById('img-interactable-terminals'), options);
+
+      const imgDroneHub = new Viewer(document.getElementById('img-drone-hub'), options);
+      const imgLiDARStation = new Viewer(document.getElementById('img-lidar-station'), options);
+
+    </script>
 
   </body>
 
