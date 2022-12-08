@@ -12,6 +12,11 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
+    <script src="https://kit.fontawesome.com/35e1fe45ab.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../res/highlight.js/styles/atom-one-dark.min.css">
+    <script src="../res/highlight.js/highlight.min.js"></script>
+
     <title>Gonçalo Rodrigues - Portfolio</title>
 
   </head>
@@ -41,7 +46,7 @@
             The goal of this project is to make a spaceship racing game inspired by Star Citizen's Arena Commander 
             Racing mode. I wanted to use a physics based ship controller and to be able to build different ships
             easily by placing as many thrusters as I want around the ship and routing inputs to thrusters using
-            Unreal's blueprints.
+            Unreal's Blueprints.
           </p>
   
           <p>
@@ -56,10 +61,258 @@
         </div><!-- .col-12 .col-md-8 -->
       </div><!-- .row -->
 
+      <!-- Ships -->
+      <h3 class="mt-4" id="ships">Ships</h3>
+
+      <div class="row">
+        <p>
+          As said before, I wanted a physics based ship controller with a way for designers to build ships 
+          without the need of writing code.
+        </p>
+
+        <p>
+          Since I'm using Unreal Engine for this project I can use the power of Blueprints to allow a ship 
+          to extend the original Ship class written in C++ that has all the complex logic behind and add 
+          any amount of thrusters needed.
+        </p>
+
+        <p>
+          This also allows for extra logic, for example, a thruster that only activates if the input is 
+          greater than a certain value or if the boost is engaged.
+        </p>
+
+        <p>
+          The ship is an Actor Class that receives user inputs and can also generate inputs, for example, 
+          when the player wants to brake the "Braking System" generates an input opposite to the ship's 
+          direction.
+        </p>
+
+        <p>
+          It also handles the boost generation and depletion logic. At the moment it is very simple with 
+          a constant generation and depletion rates over time, but in the future, I want it to vary depending 
+          on the amount of thrusters the ship has in total.
+        </p>
+
+        <p>
+          Meanwhile a thruster is a Scene Component that applies a force at a certain point of his parent 
+          according to the input it receives, like the throttle of a car. The force varies depending on 
+          the size of the thruster and if he should be using boost or not.
+        </p>
+      </div>
+
+      <div class="row">
+
+        <pre style="margin-top: -20px;">
+          <code class="language-cpp">
+/* Example of the Breaking System of the Ship */
+void AShip::Braking()
+{
+  if (!m_bIsBraking)
+  {
+    m_SystemsInput.StrafeInputVector = FVector::Zero();
+    return;
+  }
+  
+  FVector velocity = m_Velocity;
+
+  // Only normalize velocity vector if speed is greater then kBrakingEaseOffSpeed (10 Km/h)
+  if (m_SpeedKph > kBrakingEaseOffSpeed)
+  {
+    velocity /= m_SpeedMps;
+  }
+  else
+  {
+    // This speed is lower then kBrakingEaseOffSpeed
+    // Convert 0 .. kBrakingEaseOffSpeed -> 0 .. 1
+    velocity /= kBrakingEaseOffSpeed;
+  }
+  
+  m_SystemsInput.StrafeInputVector = -velocity;
+}
+          </code>
+        </pre>
+
+      </div>
+      <!-- Ships -->
+
+      <!-- Checkpoints -->
+      <h3 class="mt-4" id="checkpoints">Checkpoints</h3>
+
+      <div class="row">
+        <p>
+          For the checkpoints system I took inspiration on a linked list data structure where an element 
+          of the list points to the next one.
+        </p>
+
+        <p>
+          The game mode keeps track of the first and current checkpoint and when the player crosses the 
+          current checkpoint he moves to the next one.
+        </p>
+
+        <p>
+          With this method I can also calculate the remaining checkpoints left and the number of checkpoints 
+          already crossed.
+        </p>
+
+        <p>
+          For the future, I'm thinking about adding the possibility for a checkpoint to point to more than one 
+          checkpoints. This would be useful to create levels where the player can choose to go to a shortcut 
+          that will gain him a bit of time but will make him follow a much more difficult route.
+        </p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-12 col-md-6">
+
+          <pre style="margin-top: -20px;">
+            <code class="language-cpp">
+/* Called when a Checkpoint is crossed */
+void ATimeAttackGameMode::CheckpointPassed(ARaceCheckpoint* checkpoint)
+{
+  // Deactivate the crossed checkpoint
+  checkpoint->SetActiveState(false);
+
+  ARaceCheckpoint* nextCheckpoint = checkpoint->GetNextCheckpoint();
+
+  if (nextCheckpoint != nullptr)
+  {
+    m_CurrentCheckpoint = nextCheckpoint;
+    nextCheckpoint->SetActiveState(true);
+  }
+  else
+  {
+    // Finish line crossed
+    m_Timer.Stop();
+    OnFinishLineCrossed.Broadcast();
+  }
+
+  int checkpointsLeft = CalculateCheckpointCount(m_CurrentCheckpoint);
+
+  // Updates the current checkpoint indicator for UI usage
+  SetCurrentCheckpointIndex(m_CheckpointCount - checkpointsLeft + 1);
+}
+            </code>
+          </pre>
+
+        </div>
+
+        <div class="col-12 col-md-6">
+
+          <pre style="margin-top: -20px;">
+            <code class="language-cpp">
+/* Counts the number of checkpoints starting at startPoint */
+int ATimeAttackGameMode::CalculateCheckpointCount(ARaceCheckpoint* startPoint)
+{
+  ARaceCheckpoint* current = startPoint;
+  int count = 0;
+
+  while (current != nullptr)
+  {
+    count++;
+    current = current->GetNextCheckpoint();
+  }
+
+  return count;
+}
+            </code>
+          </pre>
+
+        </div>
+
+      </div>
+      <!-- Checkpoints -->
+
+      <!-- The Future -->
+      <h3 class="mt-4" id="the-future">The Future</h3>
+
+      <div class="row">
+
+        <p>
+          This game is still being activly developed and there are still features that I want to add.
+        </p>
+
+        <p>
+          Some of these features are:
+        </p>
+
+        <ul style="padding-left: 50px;">
+          <li>Landing Gear that the player can open or retract to land the ship safely</li>
+          <li>Damage the ship if the player hits something. This damage will be able to destroy the ship</li>
+          <li>Allow the player to go back to the last checkpoint</li>
+          <li>New lapped racing game mode</li>
+          <li>More levels and ships</li>
+        </ul>
+
+      </div>
+      <!-- The Future -->
+
+      <!-- Gameplay -->
+      <h3 class="mt-4" id="gameplay">Gameplay</h3>
+      
+      <div class="row pb-3">
+
+        <div class="ratio ratio-16x9 mt-4">
+          <iframe src="https://www.youtube.com/embed/8UOYY5D06b4" title="Stargaze Gameplay" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+      </div>
+      <!-- Gameplay -->
+
+      <!-- Controls -->
+      <h3 class="mt-4" id="controls">Controls</h3>
+
+      <div class="mt-3 pb-3">
+
+        <ul>
+          <li><kbd>W</kbd> <kbd>S</kbd> - Strafe Forward/Backward</li>
+          <li><kbd>A</kbd> <kbd>D</kbd> - Strafe Left/Right</li>
+          <li><kbd>Space</kbd> <kbd>Ctrl</kbd> - Strafe Up/Down</li>
+          
+          <br>
+          
+          <li><kbd>Mouse X</kbd> - Yaw</li>
+          <li><kbd>Mouse Y</kbd> - Pitch</li>
+          <li><kbd>Q</kbd> <kbd>E</kbd> - Roll</li>
+
+          <br>
+
+          <li><kbd>Shift</kbd> - Boost</li>
+          <li><kbd>X</kbd> - Brake</li>
+
+          <br>
+
+          <li><kbd>Alt + R</kbd> - Restart</li>
+          <li><kbd>Esc</kbd> <kbd>P</kbd> - Pause</li>
+        </ul>
+
+      </div>
+      <!-- Controls -->
+
+      <!-- Downloads -->
+      <h3 class="mt-4" id="downloads">Downloads</h3>
+
+      <div class="pb-5 mt-3">
+        
+        <p>
+          <a class="btn btn-primary" href="https://gitlab.com/GoncaloRod/spaceships" target="_blank"><i class="fa-brands fa-gitlab"></i> Source Code</a>
+        </p>
+
+        <p>
+          <a class="btn btn-primary" href="https://cdn.goncalorod.pt/Spaceships-Windows.zip"><i class="bi bi-windows"></i> Windows</a>
+        </p>
+
+      </div>
+      <!-- Downloads -->
+
     </div><!-- .container -->
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
 
   </body>
 
